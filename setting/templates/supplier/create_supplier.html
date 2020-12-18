@@ -1,0 +1,56 @@
+{% extends "setting.html" %}
+{% load static %}
+
+{% block page_title %}
+    {{page_title}}
+{% endblock page_title %}
+
+
+{% block csslink %}
+    <link rel="stylesheet" href="{% static 'supplier/create_supplier_styles.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+    <div id="content">
+    		<form id="form" method='POST'>
+					{% csrf_token %}
+					<div class="input supplier_name">
+						{{form.supplier_name.label_tag}}
+						{{form.supplier_name}}
+
+					</div>
+
+					<div class="input telephone-number">
+						{{form.telephone_number.label_tag}}
+						{{form.telephone_number}}
+					</div>
+
+					<div class="input email">
+						{{form.email.label_tag}}
+						{{form.email}}
+					</div>
+
+					<div class="input location">
+						{{form.location.label_tag}}
+						{{form.location}}
+					</div>
+
+				    {% for field in form %}
+		    			{% for error in field.errors %}
+		    				<p class="error">{{error}}</p>
+		    			{% endfor %}
+					{% endfor %}
+
+					<br>
+				
+				<button type="submit"  onclick="return confirm('Do you want to save ?')" class=' button {{button_class1}} '>
+					Save
+				</button>
+
+				<button type="button" onclick='window.location.href="{% url "setting_supplier" %}"' class=' button {{button_class2}} '>
+					Cancel
+				</button>	
+			</form>
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="{% static 'css/all.css' %}">
+	 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+	{% block csslink %}
+	    <link rel="stylesheet" href="{% static 'input/styles.css' %}">
+	{% endblock csslink %}
+	<title>{% block page_title %} {{page_title}} {% endblock page_title %}</title>
+</head>
+<body>
+	{% block header %}
+	    <div id="header">
+	    	<img class="logo" src="{% static 'logo.png' %}" 
+	    		alt="All In One Data Entry Logo">
+	    	<h2>All In One Data Entry</h2>
+
+	    	<i class="fas fa-user-circle" aria-hidden='true'></i>
+	    	{% if request.user.is_authenticated %}
+	    	    <div class="profile">
+	    			<h3>{{request.user.company_name}}</h3>
+	    			<button type="button" onclick="window.location.href='{% url 'edit_profile' %}'">Change Account Profile</button>
+	    			<button type="button" onclick="window.location.href='{% url 'change_password' %}'">Change Password</button>
+	    			<button class="logout" type="button">Logout</button>
+	    		</div>
+	    	{% endif %}
+	    	
+	    </div>
+	{% endblock header %}
+
+	{% block sidebar %}
+	    <div id="sidebar">
+
+	    	<ul class="menu">
+    			{% for item in menu %}
+    				<li class="menu-list">
+    					<i class="{% cycle 'fas fa-clipboard-list fa-fw' 'fas fa-dolly-flatbed fa-fw' 'fas fa-boxes fa-fw fa-fw' 'fas fa-cog fa-fw' %}"></i>
+		    			<span>{{item}}</span>
+		    		</li>
+    			{% endfor %}
+	    	</ul>
+	    </div>
+	{% endblock sidebar %}
+
+	{% block content %}
+		<div id="content">
+			<h3>{{menu_name}}</h3>
+
+			{% block create-button %}
+			    <button type="button" onclick='location.href="{% url "create_input" %}"' class={{button_class}}>
+				Create
+				</button>
+			{% endblock create-button %}
+		
+			<form id="form" method="GET">
+				<div class="search-bar">
+					{{Filter.form.document_name}}
+					<button class="search-button" type="search">
+						<i class="fa fa-search"></i>
+					</button>		
+				</div>
+			</form>
+	    	<table id="table">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Document Name</th>
+						<th>Date</th>
+						<th>Warehouse Name</th>
+						<th>Supplier Name</th>
+						<th>Total</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				 {% for item in data %}	
+					<tbody>
+						<tr>
+							<td>{{forloop.counter}}</td>
+							<td>{{item.document_name}}</td>
+							<td>{{item.date}}</td>
+							<td>{{item.warehouse_name}}</td>
+							<td>{{item.supplier_name}}</td>
+							<td>{{item.total}}</td>
+							<td>
+								{% block actions %}
+								    <div class="update-icon" onclick="window.location.href='{% url 'update_input' item.id %}'">
+										<i class="fa fa-edit" ></i>
+										<span>Update</span>
+									</div>
+									<div class="delete-icon" onclick="window.location.href='{% url 'delete_input' item.id %}'">
+										<i class="fa fa-trash" ></i>
+										<span>Delete</span>
+									</div>
+								{% endblock actions %}	
+							</td>
+						</tr>
+					</tbody>
+				{% endfor %}
+	    	</table>
+	    	
+    		{% if messages %}
+	    		    {% for message in messages %}
+	    				<p id="message">{{message}}</p>
+					{% endfor %}
+    		{% endif %}
+
+		</div>
+	{% endblock content %}
+	     <script>
+	     	// Menu-list
+			var  menu_list = document.querySelectorAll('.menu-list');
+			var current = location.pathname;
+			var menu = ['input','retur','product','setting'];
+
+			menu_list[0].addEventListener('click',function(){
+				window.location.href = '{% url "input" %}';
+			});
+			menu_list[1].addEventListener('click',function(){
+				window.location.href = '{% url "retur" %}';
+			});
+			menu_list[2].addEventListener('click',function(){
+				window.location.href = '{% url "product" %}';
+			});
+			menu_list[3].addEventListener('click',function(){
+				window.location.href = '{% url "setting" %}';
+			});
+			
+		
+
+			// Active Menu 
+			for(var i = 0; i < menu.length; i++) {
+				if(current.indexOf(menu[i]) > 0){
+			 	menu_list[i].className += ' active';
+			 }  
+			}
+			
+			
+
+			// Logout
+			var logout_button = document.querySelector('.logout');
+
+			 logout_button.addEventListener('click', function(){
+				  var logout = confirm('Do you want to logout ?');
+				  if(logout == true) {
+				  	window.location.href = '{% url "logout" %}';
+				  }      
+			});
+
+			
+			// Profile
+			var icon_profile = document.querySelector('.fa-user-circle');
+			var profile = document.querySelector('.profile');
+			icon_profile.addEventListener('click', function(){
+				if (profile.style.transform == 'translateX(120%)') {
+					profile.style.transform = 'translateX(0)';
+				} else {
+					profile.style.transform = 'translateX(120%)';
+				}
+			});
+
+			// Search Placeholder
+			var search = document.querySelector('.search-bar #id_document_name');
+			search.placeholder = 'Search Document Name';
+			
+	    </script>	
+</body>	
+</html>

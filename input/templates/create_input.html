@@ -1,0 +1,85 @@
+{% extends "input.html" %}
+{% load static %}
+
+{% block page_title %}
+    {{page_title}}
+{% endblock page_title %}
+
+{% block csslink %}
+    <link rel="stylesheet" href="{% static 'input_create/styles.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+   <div id="content">
+			<h3>{{menu_name}}</h3>
+
+			<form id='form' method='POST'>
+			{% csrf_token %}
+
+				<button type="submit"  onclick="return confirm('Do you want to save ?')" class=' button {{button_class1}} '>
+					Save
+				</button>
+
+				{% block cancel-button %}
+					<button type="button" onclick='location.href="{% url "input" %}"' class=' button {{button_class2}} '>
+						Cancel
+					</button>
+				{% endblock cancel-button %}
+			
+				
+				<div id="document-data">
+					<div class="document-data document-name">
+						<span>{{form.document_name.label_tag}}</span>
+						<span>{{form.document_name}}</span>
+					</div>
+
+					<div class="document-data warehouse-name">
+						<span>{{form.warehouse_name.label_tag}}</span>
+						<span>{{form.warehouse_name}}</span>
+					</div>
+
+					<div class="document-data date">
+						<span>{{form.date.label_tag}}</span>
+						<span>{{form.date}}</span>
+					</div>
+
+					<div class="document-data supplier-name">
+						<span>{{form.supplier_name.label_tag}}</span>
+						<span>{{form.supplier_name}}</span>
+					</div>
+				</div>
+
+				<div id="input-data">
+					<table id="table">
+						<thead>
+							<tr>
+								<th>{{form.product_name.label_tag}}</th>
+								<th>{{form.category.label_tag}}</th>
+								<th>{{form.quantity.label_tag}}</th>
+								<th>{{form.uom.label_tag}}</th>
+								<th>{{form.product_price.label_tag}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{form.product_name}}</td>
+								<td>{{form.category}}</td>
+								<td>{{form.quantity}}</td>
+								<td>{{form.uom}}</td>
+								<td>{{form.product_price}}</td>
+							</tr>
+						</tbody>
+					</table>
+
+				    {% for field in form %}
+		    			{% for error in field.errors %}
+		    				<p class="error">{{error}}</p>
+		    			{% endfor %}
+					{% endfor %}
+		   		
+
+				</div>
+			</form>
+	</div>
+
+{% endblock content %}

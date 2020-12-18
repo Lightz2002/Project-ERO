@@ -1,0 +1,113 @@
+/* Content */
+#content {
+	grid-area: content;
+	margin-top: 10px;
+	margin-left: 2em;
+}
+
+#content h3 {
+	margin: 10px 0 25px 7px;
+}
+
+#content #form button {
+	padding: 2px;
+	border-radius: 4px;
+	color: white;
+	border: none;
+	padding: 8px;
+	width: 80px;
+	outline: none;
+	transition: all 0.3s ease;
+	cursor: pointer;
+	margin: 0 10px 40px 5px;
+}
+
+#content #form button:hover {
+	cursor: pointer;	 	
+	box-shadow: 0 0 5px 1px #aaa;
+} 
+
+#content #form .save-button {
+	background-color: #2ECC71;
+}
+
+#content #form .cancel-button {
+	background-color: #E74C3C;
+}
+
+#content #form .error {
+	background-color: #FBD9DF;
+	color: #C71436;
+	padding: 8px;
+	margin: 10px auto;
+	width: 45%;
+}
+
+#content #form input:focus,
+#content #form select:focus {
+	outline: none;
+	box-shadow: 0 0 4px #aaa;
+    border: 2px solid #aaa;
+}
+
+/* Document data */
+#document-data {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	margin: 20px 0 50px;
+}
+
+#document-data .document-data {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: 70%;
+	height: 50%;
+	margin: 5px 0;
+}
+
+#document-data .document-data span {
+	margin: 0 10px;
+}
+
+#document-data .document-data input,
+#document-data .document-data select {
+	width: 200px;
+	padding: 5px;
+}
+
+#input-data {
+	margin-left: 35px;
+}
+
+#input-data #table ,
+#input-data #table th,
+#input-data #table td {
+	border: 1px solid #dddddd;
+	border-collapse: collapse;
+	padding: 10px;
+}
+
+#input-data #table {
+	width: 93%;
+}
+
+#input-data #table td {
+	padding: 0;
+	height: 25px;
+}
+
+#input-data #table th{
+	background-color: #003366;
+	color: white;
+}
+
+#input-data #table input, 
+#input-data #table select {
+	border: none;
+	height: 100%;
+	width: 220px;
+	padding: 5px;
+}
+

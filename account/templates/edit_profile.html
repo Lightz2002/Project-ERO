@@ -1,0 +1,53 @@
+{% extends "product_create.html" %}
+{% load static %}
+
+{% block csslink %}
+     <link rel="stylesheet" href="{% static 'edit_profile/styles.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+    <div id="content">
+			<h3>{{menu_name}}</h3>
+			<form id="form" method="POST">
+				{% csrf_token %}
+					<div class="input company-name">
+						{{form.company_name.label_tag}}
+						{{form.company_name}}
+					</div>
+
+					<div class="input city">
+						{{form.city.label_tag}}
+						{{form.city}}
+					</div>
+
+					<div class="input address">
+						{{form.address.label_tag}}
+						{{form.address}}
+					</div>
+
+					<div class="input email">
+						{{form.email.label_tag}}
+						{{form.email}}
+					</div>
+					
+
+					{% for field in form %}
+		    			{% for error in field.errors %}
+		    				<p class="error">{{error}}</p>
+		    			{% endfor %}
+					{% endfor %}
+					
+					<br>
+			
+				<button type="submit"  onclick="return confirm('Do you want to save ?')" class=' button {{button_class1}} '>
+					Save
+				</button>
+
+				<button type="button" onclick='window.location.href="{% url "input" %}"' class=' button {{button_class2}} '>
+					Cancel
+				</button>	
+
+			</form>
+
+		</div>
+{% endblock content %}

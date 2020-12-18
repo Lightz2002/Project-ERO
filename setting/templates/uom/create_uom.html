@@ -1,0 +1,45 @@
+{% extends "setting.html" %}
+{% load static %}
+
+{% block page_title %}
+    {{page_title}}
+{% endblock page_title %}
+
+
+{% block csslink %}
+    <link rel="stylesheet" href="{% static 'uom/create_uom_styles.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+    <div id="content">
+    		<form id="form" method='POST'>
+					{% csrf_token %}
+					<div class="input uom">
+						{{form.uom.label_tag}}
+						{{form.uom}}
+					</div>
+
+					<div class="input quantity">
+						{{form.quantity.label_tag}}
+						{{form.quantity}}
+					</div>
+
+				    {% for field in form %}
+		    			{% for error in field.errors %}
+		    				<p class="error">{{error}}</p>
+		    			{% endfor %}
+					{% endfor %}
+
+					<br>
+				
+				<button type="submit" onclick="return confirm('Do you want to save ?')" class=' button {{button_class1}} '>
+					Save
+				</button>
+
+				<button type="button" onclick='window.location.href="{% url "setting_uom" %}"' class=' button {{button_class2}} '>
+					Cancel
+				</button>	
+			</form>
+
+    </div>
+{% endblock content %}

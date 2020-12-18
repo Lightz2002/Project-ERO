@@ -1,0 +1,77 @@
+{% extends "input.html" %}
+{% load static %}
+
+{% block page_title %}
+    	{{page_title}}
+{% endblock page_title %}
+
+
+{% block csslink %}
+    	    <link rel="stylesheet" href="{% static 'product_create/styles.css' %}">
+{% endblock csslink %}
+
+
+{% block content %}
+	 <div id="content">
+			<form id="form" method='POST' enctype="multipart/form-data">
+			{% csrf_token %}
+					<div class="input photo">
+						{{form.photo.label_tag}}
+						{{form.photo}}
+					</div>
+
+					<div class="input product-name">
+						{{form.product_name.label_tag}}
+						{{form.product_name}}
+					</div>
+
+					<div class="input purchase-price">
+						{{form.purchase_price.label_tag}}
+						{{form.purchase_price}}
+					</div>
+
+					<div class="input selling-price">
+						{{form.selling_price.label_tag}}
+						{{form.selling_price}}
+					</div>
+
+					<div class="input supplier-name">
+						{{form.supplier_name.label_tag}}
+						{{form.supplier_name}}
+					</div>
+
+					<div class="input barcode">
+						{{form.barcode.label_tag}}
+						{{form.barcode}}
+					</div>
+
+					<div class="input uom">
+						{{form.uom.label_tag}}
+						{{form.uom}}
+					</div>
+
+					<div class="input category">
+						{{form.category.label_tag}}
+						{{form.category}}
+					</div>
+					
+				  	{% for field in form %}
+	    				{% for error in field.errors %}
+	    					<p class="error">{{error}}</p>
+	    				{% endfor %}
+					{% endfor %}
+					
+					<br>
+				
+			  
+
+				<button type="submit"  onclick="return confirm('Do you want to save ?')" class=' button {{button_class1}} '>
+					Save
+				</button>
+
+				<button type="button" onclick='window.location.href="{% url "product" %}"' class=' button {{button_class2}} '>
+					Cancel
+				</button>	
+			</form>
+		
+{% endblock content %}

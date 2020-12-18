@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet"  href= "{% static 'css/all.css' %}">
+	<link rel="stylesheet"  href= "{% static 'register_user/styles.css' %}">
+	<title>{{page_title}}</title>
+</head>
+<body>
+		<div id="header">
+			<img class="logo" src="{% static 'img/logo.png' %}" 
+				alt="All In One Data Entry Logo">
+			<h1 class="title">{{title}}</h1>
+		</div>
+
+
+		<div id="container">
+
+			<form id="form" method="POST">
+				<h1>{{subtitle}}</h1>
+	    		{% csrf_token %}
+
+		    	<div class="input-group">
+		    		{{registration_form.company_name}}
+		    		{{registration_form.company_name.label_tag}}
+		    	</div>
+
+		    	<div class="input-group">
+		    		{{registration_form.city}}
+		    		{{registration_form.city.label_tag}}
+		    	</div>
+
+		    	<div class="input-group">
+		    		{{registration_form.address}}
+		    		{{registration_form.address.label_tag}}
+		    	</div>
+
+		    	<div class="input-group">
+		    		{{registration_form.email}}
+		    		{{registration_form.email.label_tag}}
+ 		    	</div>
+
+		    	<div class="input-group">
+		    		{{registration_form.password1}}
+		    		{{registration_form.password1.label_tag}}
+		    		<i class="fa fa-eye" aria-hidden='true'></i>
+		    	</div>
+
+		    	<div class="input-group" style="margin-bottom: 15px;">
+		    		{{registration_form.password2}}
+		    		{{registration_form.password2.label_tag}}
+		    		<i class="fa fa-eye" aria-hidden='true'></i>
+		    	</div>
+	 	
+		   		{% for field in registration_form %}
+		    			{% for error in field.errors %}
+		    				<p class="error">{{error}}</p>
+		    			{% endfor %}
+				{% endfor %}
+
+	    		<button type="submit" class="register-user">Register</button>
+	    		<button type="button" class="back" onclick="location.href='{% url 'login_user' %}'">Back</button>
+	    		
+			</form>
+	</div>
+	<script src="{% static 'register_user/script.js' %}"></script>  
+</body>
+</html>

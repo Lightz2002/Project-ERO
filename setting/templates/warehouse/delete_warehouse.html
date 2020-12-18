@@ -1,0 +1,7 @@
+{% extends "uom/delete_uom.html" %}
+
+{% block form %}
+ 	<h3>Do you want to delete {{warehouse.warehouse_name}}?</h3>
+	<button class="yes-button" type="submit">Yes</button>
+    <a href="{% url 'setting_warehouse' %}"><div class="no-button">No</div></a>
+{% endblock form %}

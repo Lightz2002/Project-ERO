@@ -1,0 +1,61 @@
+/* Content */
+#content {
+	grid-area: content;
+	margin-top: 10px;
+	margin-left: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+#content #form {
+	padding: 15px;
+	background: white;
+	width: 500px;
+	border-radius: 4px;
+	box-shadow: 0 0 4px #aaa;
+	margin-left: -130px;
+}
+
+#content #form h3 {
+	margin: 10px 0;
+	color: black;
+}
+
+#content #form .yes-button{
+	background: #2ECC71;
+	border: none;
+	border-radius: 4px;
+	padding: 8px;
+	width: 80px;
+	outline: none;
+	transition: all 0.3s ease;
+	margin: 20px 10px 0 10px;
+	color: white;
+}
+
+#content #form .no-button {
+	padding: 6px;
+	background: #E74C3C;
+	border: none;
+	border-radius: 4px;
+	text-align: center;
+	width: 80px;
+	display: inline-block;
+	box-sizing: border-box;
+} 
+
+#content #form .yes-button:hover,
+#content #form .no-button:hover {
+	cursor: pointer;
+	box-shadow: 0px 0px 5px 1px #aaa;
+	color: white;
+} 
+
+#content #form a {
+	text-decoration: none;
+	color: white;
+	margin: 0;
+	padding: 0;
+}

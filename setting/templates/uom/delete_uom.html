@@ -1,0 +1,22 @@
+{% extends "input.html" %}
+{% load static %}
+
+{% block page_title %}
+    {{page_title}}
+{% endblock page_title %}
+
+{% block csslink %}
+        <link rel="stylesheet" href="{% static 'uom/delete_uom_styles.css' %}">
+{% endblock csslink %}
+{% block content %}
+	<div id="content">
+		 <form id="form" method="POST">
+		 	{% csrf_token %}
+		 	{% block form %}
+		 	    <h3>Do you want to delete {{uom.uom}}?</h3>
+	 	    	<button class="yes-button" type="submit">Yes</button>
+		    	<a href="{% url 'setting_uom' %}"><div class="no-button">No</div></a>
+		 	{% endblock form %}
+		</form>
+	</div>
+{% endblock content %}

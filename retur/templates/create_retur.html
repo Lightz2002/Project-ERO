@@ -1,0 +1,8 @@
+{% extends "create_input.html" %}
+
+{% block cancel-button %}
+	<button type="button" onclick='location.href="{% url "retur" %}"' class=' button {{button_class2}} '>
+		Cancel
+	</button>
+{% endblock cancel-button %}
+

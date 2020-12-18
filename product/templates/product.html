@@ -1,0 +1,63 @@
+{% extends "input.html" %}
+{% load static %}
+
+{% block page_title %}
+    	{{page_title}}
+{% endblock page_title %}
+
+{% block csslink %}
+    	    <link rel="stylesheet" href="{% static 'product/styles.css' %}">
+{% endblock csslink %}
+
+
+	{% block content %}
+		<div id="content">
+			<h3>{{menu_name}}</h3>
+
+			<button type="button" onclick='window.location.href="{% url "create_product" %}"' class={{button_class}}>
+				Create
+			</button>
+
+			<form id="form" method="GET">
+				<div class="search-bar">
+					{{Filter.form.product_name}}
+					<button class="search-button" type="search">
+						<i class="fa fa-search"></i>
+					</button>		
+				</div>
+				
+			</form>
+
+			{% for item in data %}
+				<div class="product-list">
+					<div class="product-list-item" onclick="window.location.href='{% url 'update_product' item.id %}'">
+						{% if item.photo %}
+						    <img src="{{item.photo.url|default_if_none:'static/logo.png'}}" alt="Product Photo">
+						{% endif %}
+						{% if item.photo == '' %}
+						     <img src="{% static 'logo.png' %}" alt="Product Photo">
+						{% endif %}
+						<p>{{item.product_name}}</p>
+					</div>
+				</div>
+			{% endfor %}
+			
+			{% if messages %}
+	    		    {% for message in messages %}
+	    				<p id="message">{{message}}</p>
+					{% endfor %}
+    		{% endif %}
+		</div>
+		<script>
+			var search = document.getElementById('id_product_name');
+			search.placeholder = 'Search Product';
+		</script>
+	{% endblock content %}
+	
+	
+
+
+
+
+
+

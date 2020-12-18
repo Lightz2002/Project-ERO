@@ -1,0 +1,13 @@
+{% extends "delete_input.html" %}
+{% block content %}
+	<div id="content">
+		 <form id="form" method="POST">
+		 	{% csrf_token %}
+		 	{% block form %}
+		 	    <h3>Do you want to delete {{retur.document_name}}?</h3>
+				<button class="yes-button" type="submit">Yes</button>
+			    <a href="{% url 'retur' %}"><div class="no-button">No</div></a>
+		 	{% endblock form %}
+		</form>
+	</div>
+{% endblock content %}

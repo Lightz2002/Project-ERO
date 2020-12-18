@@ -1,0 +1,53 @@
+{% extends "setting.html" %}
+{% load static %}
+
+{% block page_title %}
+    {{page_title}}
+{% endblock page_title %}
+
+
+{% block csslink %}
+    <link rel="stylesheet" href="{% static 'category/styles.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+    <div id="content">
+    	<h3>{{menu_name}}</h3>
+
+    	<button class="{{button_class}}" type="button" onclick="location.href='{% url 'create_category' %}'">Create</button>
+
+	    	<table id="table">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Category</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				 {% for item in data %}	
+					<tbody>
+						<tr>
+							<td>{{forloop.counter}}</td>
+							<td>{{item.category}}</td>
+							<td>
+								<div class="update-icon" onclick="window.location.href='{% url 'update_category' item.id %}'">
+									<i class="fa fa-edit" ></i>
+									<span>Update</span>
+								</div>
+								<div class="delete-icon" onclick="window.location.href='{% url 'delete_category' item.id %}'">
+									<i class="fa fa-trash" ></i>
+									<span>Delete</span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				{% endfor %}
+	    	</table>
+	    	
+    		{% if messages %}
+	    		    {% for message in messages %}
+	    				<p id="message">{{message}}</p>
+					{% endfor %}
+    		{% endif %}
+    </div>
+{% endblock content %}

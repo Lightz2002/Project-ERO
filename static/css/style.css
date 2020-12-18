@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	position: relative;
+	font-family: "Montserrat", sans-serif;
+	display: grid;
+	grid-template-columns: 10% 90%;
+	grid-template-rows: 1fr 90%;
+	grid-template-areas: 
+		"header header"
+		"sidebar content";
+	gap: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 100vh;
+	background: #eee;
+}
+
+/* Header */
+#header {
+	position: fixed;
+	background: #003366   ;	
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 99;
+	grid-area: header;
+	color: white;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 8px 15px 8px 15px;
+}
+
+#header .logo {
+	width: 45px;
+	height: 45px;
+}
+
+#header .fa-user-circle {
+	font-size: 2.5rem;
+	transition: all 0.3s ease;
+}
+
+#header .fa-user-circle:hover {
+	cursor: pointer;
+	box-shadow: 0 0 5px rgb(0, 0, 0);
+	outline: none;
+	border-radius: 50%;
+}
+
+#header h3 {
+	color: white;
+	margin-bottom: 30px;
+}
+
+#header .profile {
+	position: absolute;
+	top: 61px;
+	right: 0;
+	width: 18%;
+	background-color: grey;
+	text-align: center;
+	padding: 10px;
+	border-radius: 0 0 0 4px;
+	transform: translateX(120%);
+	transition: all 0.3s linear	;
+}
+
+
+#header .profile button {
+	background: #003366;	
+	box-shadow: 0px 0px 6px  #003366;
+	color: white;
+	border: none;
+	border-radius: 40px;
+	padding: 8px;
+	width: 200px;
+	outline: none;
+	transition: all 0.3s ease;
+	margin: 0 auto 20px auto;
+	display: block;
+}
+
+#header .profile button:nth-child(3) {
+	width: 70%;
+}
+
+#header .profile .logout {
+	width: 80px;
+}
+
+#header .profile button:hover {
+	cursor: pointer;	 	
+	background: white;
+	color: #003366;
+	border-color: #003366;
+} 
+
+/* Sidebar */
+#sidebar {
+	background: #1d2123;
+	position: fixed;
+	top: 61px;
+	left: 0;
+	bottom: 0;
+	text-align: left;
+	grid-area: sidebar;
+	height: 100vh;
+}
+
+
+#sidebar .menu-list {
+	list-style-type: none;
+	padding: 20px 10px;
+	width: 100%;
+	color: silver;
+	box-sizing: border-box;
+	transition: all 0.3s ease;
+}
+
+#sidebar .menu-list:hover,
+#sidebar .active{
+	background: #5f6b74;
+	color: white;
+	cursor: pointer;
+	border-left: 8px solid #003366;
+}
+
+#sidebar .active {
+	background: #5f6b74;
+	color: white;
+	border: none;
+}
+
+#sidebar .menu-list i {
+	font-size: 1.2rem;
+	margin: 5px;
+}
+
+#sidebar .menu-list span{
+	margin-right: 30px;
+}

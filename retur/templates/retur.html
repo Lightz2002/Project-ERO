@@ -1,0 +1,19 @@
+{% extends "input.html" %}
+
+{% block create-button %}
+    <button type="button" onclick='location.href="{% url "create_retur" %}"' class={{button_class}}>
+		Create
+	</button>
+{% endblock create-button %}
+
+
+{% block actions %}
+    <div class="update-icon" onclick="window.location.href='{% url 'update_retur' item.id %}'">
+		<i class="fa fa-edit" ></i>
+		<span>Update</span>
+	</div>
+	<div class="delete-icon" onclick="window.location.href='{% url 'delete_retur' item.id %}'">
+		<i class="fa fa-trash" ></i>
+		<span>Delete</span>
+	</div>
+{% endblock actions %}

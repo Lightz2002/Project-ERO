@@ -1,0 +1,34 @@
+{% extends "input.html" %}
+{% load static %}
+
+
+{% block page_title %}
+    {{page_title}}
+{% endblock page_title %}
+
+{% block csslink %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+ 	<div id="content">
+ 		<h3>{{menu_name}}</h3>
+
+ 		<div id="link">
+ 			<ul>
+	 			<li>
+	 				<button onclick="window.location.href='{% url 'setting_uom' %}'">Uom</button>
+	 			</li>
+	 			<li>
+	 				<button onclick="window.location.href='{% url 'setting_warehouse' %}'">Warehouse</button>
+	 			</li>
+	 			<li>
+	 				<button onclick="window.location.href='{% url 'setting_supplier' %}'">Supplier</button>
+	 			</li>
+	 			<li>
+	 				<button onclick="window.location.href='{% url 'setting_category' %}'">Category</button>
+	 			</li>
+ 			</ul>
+ 		</div>
+ 	</div>
+{% endblock content %}
